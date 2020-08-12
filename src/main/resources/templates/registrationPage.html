@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <div th:replace="fragments/header :: header-css"></div>
+    <link rel="stylesheet" th:href="@{/css/signin.css}"/>
+
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+CZEŚĆ
+<form action="/auth/register" th:object="${registrationData}" method="POST" autofocus class="form-signin">
+    <label for="firstName">Imię</label>
+    <input id="firstName" type="text" th:field="*{firstName}" class="form-control">
+    <label for="lastName">Nazwisko</label>
+    <input id="lastName" type="text" th:field="*{lastName}" autofocus class="form-control">
+    <label for="login">Login</label>
+    <input id="login" type="text" th:field="*{login}" autofocus class="form-control">
+    <label for="password">Hasło</label>
+    <input id="password" type="password" th:field="*{password}" autofocus class="form-control">
+    <label for="country">Kraj</label>
+    <select id="country" th:field="*{country}" autofocus class="form-control">
+        <option th:each="countryItem : ${countries}"
+                th:value="${countryItem}"
+                th:text="${countryItem.polishName}"></option>
+    </select>
+    <label for="city">Miasto</label>
+    <input type="text" id="city" th:field="*{city}" autofocus class="form-control">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Utwórz konto</button>
+
+
+</form>
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
